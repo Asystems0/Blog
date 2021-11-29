@@ -9,7 +9,8 @@ function PostPage() {
   let navigate = useNavigate();
 
   const { id } = useParams();
-  const post = posts.find((post) => post.id.toString() === id);
+
+  const post = posts.find((post) => post._id === id);
 
   const handleDelete = async (id) => {
     try {
@@ -30,12 +31,12 @@ function PostPage() {
             <h2>{post.title}</h2>
             <p className="postDate">{post.datetime}</p>
             <p className="postDate">{post.body}</p>
-            <Link to={`/edit/${post.id}`}>
+            <Link to={`/edit/${post._id}`}>
               <button className="editButton">Edit Post</button>
             </Link>
             <button
               className="deleteButton"
-              onClick={() => handleDelete(post.id)}
+              onClick={() => handleDelete(post._id)}
             >
               Delete Post
             </button>

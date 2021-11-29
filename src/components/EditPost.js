@@ -14,7 +14,8 @@ const EditPost = () => {
   let navigate = useNavigate();
 
   const { id } = useParams();
-  const post = posts.find((post) => post.id.toString() === id);
+
+  const post = posts.find((post) => post._id === id);
 
   useEffect(() => {
     if (post) {
@@ -39,11 +40,14 @@ const EditPost = () => {
     try {
       const response = await api.put(`posts/${id}`, updatedPost);
       setPosts(
-        posts.map((post) => (post.id === id ? { ...response.data.post } : post))
+        posts.map((post) =>
+          post._id === id ? { ...response.data.post } : post
+        )
       );
       setEditTitle("");
       setEditBody("");
-      navigate("/");
+      navigate(`/post/${id}`);
+      // window.location.reload(false);
     } catch (err) {
       console.log(`Error: ${err.message}`);
     }
@@ -82,7 +86,7 @@ const EditPost = () => {
                 setEditBody(e.target.value);
               }}
             />
-            <button type="submit" onClick={() => handleEdit(post.id)}>
+            <button type="submit" onClick={() => handleEdit(post._id)}>
               Submit
             </button>
           </form>
