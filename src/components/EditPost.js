@@ -47,7 +47,7 @@ const EditPost = () => {
       setEditTitle("");
       setEditBody("");
       navigate(`/post/${id}`);
-      // window.location.reload(false);
+      window.location.reload(false);
     } catch (err) {
       console.log(`Error: ${err.message}`);
     }

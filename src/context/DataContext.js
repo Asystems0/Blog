@@ -26,7 +26,6 @@ export const DataProvider = ({ children }) => {
     };
     fetchPosts();
   }, []);
-  console.log(posts);
 
   useEffect(() => {
     const filteredResults = posts.filter(
